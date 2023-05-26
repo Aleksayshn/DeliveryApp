@@ -14,8 +14,8 @@ makeServer();
 
 createRoot(document.getElementById("root"))
   .render(
-    <React.StrictMode>
-      <BrowserRouter>
+    // <React.StrictMode>
+      <BrowserRouter basename="/DeliveryApp/">
         <ProductProvider>
           <CartProvider>
             <AuthProvider>
@@ -24,5 +24,5 @@ createRoot(document.getElementById("root"))
           </CartProvider>
         </ProductProvider>
       </BrowserRouter>
-    </React.StrictMode>
+    // </React.StrictMode>
 );
