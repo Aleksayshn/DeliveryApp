@@ -21,7 +21,6 @@ $ npm start
 - Order management
 - Address management
 - Checkout page
-- Payment gateway integration
 - Authentication:
   - User Signup
   - User Login
