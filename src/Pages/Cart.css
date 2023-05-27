@@ -4,12 +4,16 @@
 }
 .empty-cart {
   font-size: 1.5rem;
-  color: #aaa;
   margin-top: 5rem;
   text-align: center;
 }
 .cart-heading {
   text-align: center;
+  color: rgb(35, 35, 17);
+  border: 2px solid rgba(122, 21, 21, 0.989);
+  background-color: antiquewhite;
+  padding: 5px 15px;
+  border-radius: 5px;
 }
 .product-card-landscape-list ul {
 display: flex;
@@ -51,18 +55,17 @@ gap: 1rem;
 }
 
 .cartPage {
-  width: 100vw;
-  height: auto;
-  background-image: linear-gradient(rgba(18, 19, 29, 0.4), rgba(13, 13, 22, 0.4)), url(../Images/3588601.jpg);
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(174, 177, 211, 0.4), rgba(13, 13, 22, 0.4)), url(../Images/3588601.jpg);
   background-color: rgba(215, 241, 208, 0.8);
   background-blend-mode: multiply;
-  background-size: cover;
-  background-repeat: no-repeat;
-  padding: 8rem 15px;
+  background-size:cover;
+  background-position: center;
+  padding-top: 5rem;
+  padding-left: 2rem;
+    padding-right: 2rem;
 }
 .wrapContent {
-  max-width: 80%;
-  display: flex;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -1,15 +1,31 @@
 .wishlist-container {
-  margin-top: 6rem;
-    background-image: url(../Images/3588601.jpg);
+  min-height: 100vh;
+    background-image: linear-gradient(rgba(174, 177, 211, 0.4), rgba(13, 13, 22, 0.4)), url(../Images/3588601.jpg);
+    background-color: rgba(215, 241, 208, 0.8);
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-position: center;
+    padding-top: 5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
 }
 .wishlist-heading {
   text-align: center;
+    color: rgb(35, 35, 17);
+      border: 2px solid rgba(122, 21, 21, 0.989);
+      background-color: antiquewhite;
+      padding: 5px 15px;
+      border-radius: 5px;
 }
 .empty-wishlist {
-  text-align: center;
-  color: #aaa;
   font-size: 1.5rem;
-  margin-top: 3rem;
+    margin-top: 5rem;
+    text-align: center;
 }
 .wishlist-product-listing {
   padding: 1rem;

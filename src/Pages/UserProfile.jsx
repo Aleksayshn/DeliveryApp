@@ -71,16 +71,15 @@ export const UserProfile = () => {
                     </span>
                     <ul className="order-history-listing-product">
                       {cart.map(
-                        ({ _id, image, title, qty, description }, i) => (
+                        ({ _id, image, title, qty }, i) => (
                           <li
                             className="order-history-listing-li-product"
                             key={i}
                             onClick={() => navigate(`/products/${_id}`)}
                           >
-                            <img src={image} alt={description} />
+                            <img src={image} alt={title} />
                             <div className="order-history-listing-li-product-detail">
                               <span>{title}</span>
-                              <span>{description}</span>
                               <span>
                                 Quantity:
                                 {qty}

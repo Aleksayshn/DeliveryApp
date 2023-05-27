@@ -8,6 +8,7 @@
 $ git clone https://github.com/Aleksayshn/DeliveryApp.git
 $ npm install
 $ npm start
+$ Run this and browse to http://localhost:3000/DeliveryApp/
 ```
 ## **Features -**
 

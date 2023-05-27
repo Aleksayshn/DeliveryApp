@@ -50,6 +50,9 @@ export const Product = () => {
   const authCheckCart = (product, place) => {
     if (checkLogin()) {
       addToCart(product);
+      if (isProductInWihlist(product._id)) {
+        toggleWishlist(product);
+      }
       success(product, place);
     } else {
       navigate("/login", { state: location });
@@ -83,7 +86,7 @@ export const Product = () => {
             className="product-in-availability"
             style={{ color: !availability && "red" }}
           >
-            {availability ? "In Stock" : "Out Of Stock"}
+            {availability ? "In-store" : "Not Available"}
           </span>
           <button
             onClick={() => authCheckCart(product, "cart")}

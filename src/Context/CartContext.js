@@ -12,9 +12,9 @@ export const CartProvider = ({ children }) => {
       sortby: null,
       searchQuery: "",
       price: 2000,
-      country: "",
     },
   });
+  console.log(cartData.filter.searchQuery);
   const getCartData = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -101,7 +101,7 @@ export const CartProvider = ({ children }) => {
       });
 
       if (response.status === 200) {
-        dispatch({ type: "ADD_TO_CART", payload: userProduct });
+        dispatch({ type: "REMOVE_CART", payload: userProduct });
       }
     } catch (err) {
       console.error(err);
@@ -198,12 +198,6 @@ export const CartProvider = ({ children }) => {
     dispatch({ type: "FILTER_CATEGORY", payload: category });
   };
 
-  const addFilterCountry = (e) => {
-    if (e.target.checked) {
-      dispatch({ type: "FILTER_COUNTRY", payload: e.target.value });
-    }
-  };
-
   const addFilterRange = (e) => {
     dispatch({ type: "FILTER_PRICE", payload: Number(e.target.value) });
   };
@@ -260,7 +254,6 @@ export const CartProvider = ({ children }) => {
         isProductInCart,
         isProductInWihlist,
         addFilterCategory,
-        addFilterCountry,
         addFilterRange,
         addFilterRating,
         addFilterSortby,
@@ -272,8 +265,6 @@ export const CartProvider = ({ children }) => {
         range: cartData.filter.price,
         filter: cartData.filter,
         searchQuery: cartData.filter.searchQuery,
-        country: cartData.filter.country,
-
       }}
     >
       {children}

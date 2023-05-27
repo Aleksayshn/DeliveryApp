@@ -38,7 +38,7 @@ span {
   text-decoration: line-through;
 }
 .actual-price::before {
-  content: "\20B9";
+  content: "\20B4";
 }
 .product-rating {
   position: relative;
