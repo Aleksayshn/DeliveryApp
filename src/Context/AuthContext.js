@@ -15,10 +15,10 @@ export const AuthProvider = ({ children }) => {
       {
         id: "1",
         active: false,
-        name: "Maggie Raynor",
-        mobile: "6731682187",
-        pincode: "309321",
-        user_address: "94993 Trantow Pine",
+        name: "Test User",
+        mobile: "+380007777777",
+        pincode: "65009",
+        user_address: "65009 Odesa Ukraine",
       },
     ],
     orderHistory: [],
@@ -26,7 +26,6 @@ export const AuthProvider = ({ children }) => {
   });
   const { resetCartContext } = useContext(CartContext);
   const setLoginSuccess = (data) => {
-    console.log(data);
     dispatch({ type: "LOGIN_SUCCESS", payload: data });
   };
 
@@ -41,7 +40,6 @@ export const AuthProvider = ({ children }) => {
         method: "POST",
         body: JSON.stringify(data),
       });
-      console.log(response.status);
       if (response.status === 200) {
         const responseData = await response.json();
         resetCartContext();

@@ -9,7 +9,7 @@ import { TailSpin } from "react-loader-spinner";
 import Drawer from "@mui/material/Drawer";
 import Backdrop from "@mui/material/Backdrop";
 
-export const ProductListing = () => {
+ const ProductListing = () => {
   const { products } = useContext(ProductContext);
   const { filter } = useContext(CartContext);
 
@@ -116,3 +116,5 @@ export const ProductListing = () => {
     </>
   );
 };
+
+export default ProductListing;

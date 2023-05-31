@@ -94,8 +94,8 @@ export const PriceCard = () => {
             <p>No Product Added</p>
           ) : (
             <ul className="price-detail-list">
-              {cart.map(({ title, price, qty }) => (
-                <li>
+              {cart.map(({ title, price, qty, id }) => (
+                <li key={id}>
                   <span>
                     {title}(x{qty})
                   </span>

@@ -6,7 +6,7 @@ import Backdrop from "@mui/material/Backdrop";
 import { CartContext } from "../Context/CartContext";
 import { TailSpin } from "react-loader-spinner";
 
-export const Home = () => {
+ const Home = () => {
   const { categories } = useContext(ProductContext);
   const { addFilterCategory, clearCategory } = useContext(CartContext);
   const navigate = useNavigate();
@@ -61,3 +61,5 @@ export const Home = () => {
     </>
   );
 };
+
+export default Home;

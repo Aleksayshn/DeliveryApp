@@ -2,6 +2,7 @@ import { useContext } from "react";
 import "./ProductCardLandscape.css";
 import { CartContext } from "../../Context/CartContext";
 import { toast } from "react-toastify";
+
 export const ProductCardLandscape = ({ product }) => {
   const { title, image, discounted_price, price } = product;
   const {
@@ -17,7 +18,7 @@ export const ProductCardLandscape = ({ product }) => {
       preposition = "from";
     }
     return toast.success(
-      `${action} 1 ${product.description} ${preposition} ${place}`,
+      `${action} 1 ${product.title} ${preposition} ${place}`,
       {
         position: "bottom-right",
         autoClose: 1500,

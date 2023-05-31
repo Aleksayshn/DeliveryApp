@@ -1,20 +1,25 @@
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { AuthContext } from "../Context/AuthContext";
 
-export const Login = () => {
+const Login = () => {
   const timerId = useRef();
-  const { checkLogin, user, authenticateUser } = useContext(AuthContext);
+  const { checkLogin, authenticateUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  if (checkLogin()) {
-    if (location?.state?.pathname) {
-      navigate(location?.state?.pathname);
-    } else {
-      navigate("/");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    if (checkLogin()) {
+      if (location?.state?.pathname) {
+        navigate(location.state.pathname);
+      } else {
+        navigate("/");
+      }
     }
-  }
+  }, [checkLogin, location, navigate]);
 
   const debounceClick = (callback, delay, e, ...args) => {
     clearTimeout(timerId.current);
@@ -23,18 +28,22 @@ export const Login = () => {
     }, delay);
   };
 
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    authenticateUser(event, email, password);
+  };
+
   return (
     <>
-      <form
-        onSubmit={(event) =>
-          authenticateUser(
-            event,
-            event.target.elements.userEmail.value,
-            event.target.elements.userPassword.value
-          )
-        }
-        className="login-container"
-      >
+      <form onSubmit={handleSubmit} className="login-container">
         <h2 className="login-heading">Login</h2>
         <label className="login-label" htmlFor="userEmail">
           Email Address
@@ -44,8 +53,8 @@ export const Login = () => {
           type="email"
           placeholder="example@gmail.com"
           id="userEmail"
-          value={user?.email}
-          pattern="/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
+          value={email}
+          onChange={handleEmailChange}
           required={true}
         />
         <label className="login-label" htmlFor="userPassword">
@@ -54,7 +63,8 @@ export const Login = () => {
         <input
           className="login-input"
           type="password"
-          value={user?.password}
+          value={password}
+          onChange={handlePasswordChange}
           placeholder="**********"
           id="userPassword"
           required={true}
@@ -77,3 +87,5 @@ export const Login = () => {
     </>
   );
 };
+
+export default Login;

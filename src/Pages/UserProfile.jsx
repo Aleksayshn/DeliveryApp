@@ -4,7 +4,8 @@ import { AuthContext } from "../Context/AuthContext";
 import Lottie from "lottie-react";
 import { useNavigate } from "react-router";
 import empty from "../animation/empty.json";
-export const UserProfile = () => {
+
+ const UserProfile = () => {
   const { user, orderHistory, logoutHandler } = useContext(AuthContext);
   const navigate = useNavigate();
   return (
@@ -99,3 +100,5 @@ export const UserProfile = () => {
     </>
   );
 };
+
+export default UserProfile;

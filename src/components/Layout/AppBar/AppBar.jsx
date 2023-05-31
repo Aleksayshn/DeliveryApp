@@ -1,12 +1,12 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AiOutlineShoppingCart, AiFillHeart } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
-import "./Header.css";
+import "./AppBar.css";
 import { useContext, useRef } from "react";
-import { CartContext } from "../../Context/CartContext";
-import { AuthContext } from "../../Context/AuthContext";
+import { CartContext } from "../../../Context/CartContext";
+import { AuthContext } from "../../../Context/AuthContext";
 
-export const Header = () => {
+const AppBar = () => {
   const timerId = useRef();
   const { checkLogin } = useContext(AuthContext);
   const { getCartCount, getWishlistCount, addFilterQuery } =
@@ -107,3 +107,5 @@ export const Header = () => {
     </>
   );
 };
+
+export default AppBar;

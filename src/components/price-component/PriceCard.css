@@ -6,6 +6,7 @@
 .price-detail-list li {
   display: flex;
   justify-content: space-between;
+  
 }
 
 .price-detail-list li span:first-of-type {

@@ -3,7 +3,8 @@ import { AddressCard } from "../components/address-component/AddressCard";
 import { PriceCard } from "../components/price-component/PriceCard";
 import "./Checkout.css";
 import { AuthContext } from "../Context/AuthContext";
-export const Checkout = () => {
+
+const Checkout = () => {
   const [hideAddress, sethideAddress] = useState(true);
 
   const { addAddressHandler } = useContext(AuthContext);
@@ -73,3 +74,5 @@ export const Checkout = () => {
     </>
   );
 };
+
+export default Checkout;

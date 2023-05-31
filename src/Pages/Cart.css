@@ -15,6 +15,10 @@
   padding: 5px 15px;
   border-radius: 5px;
 }
+
+.stepper {
+  margin: 1rem auto;
+}
 .product-card-landscape-list ul {
 display: flex;
 flex-direction: column;
@@ -29,13 +33,14 @@ gap: 1rem;
   background-color: rgb(243, 243, 222);
 }
 .price-card {
-  width: 40%;
+  width: 100%;
   padding: 0.9rem;
   height: fit-content;
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
   box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.5);
+    background-color: rgb(243, 243, 222);
 }
 @media screen and (max-width: 786px) {
   .cart-detail {

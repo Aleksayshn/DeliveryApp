@@ -7,7 +7,7 @@ import { CartContext } from "../Context/CartContext";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Context/AuthContext";
 
-export const Product = () => {
+ const Product = () => {
   const { productId } = useParams();
   const { getProductDetail } = useContext(ProductContext);
   const { addToCart, toggleWishlist, isProductInCart, isProductInWihlist } =
@@ -125,3 +125,5 @@ export const Product = () => {
     </>
   );
 };
+
+export default Product;

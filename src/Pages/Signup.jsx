@@ -2,7 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Signup.css";
 import { useContext, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
-export const Signup = () => {
+
+ const Signup = () => {
   const { signUpHandler, checkLogin } = useContext(AuthContext);
   const [msg, setMsg] = useState("");
   const [disabled, setDisabled] = useState(true);
@@ -110,3 +111,5 @@ export const Signup = () => {
     </>
   );
 };
+
+export default Signup;

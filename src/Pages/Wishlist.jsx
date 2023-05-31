@@ -3,7 +3,7 @@ import { ProductCard } from "../components/product-component/ProductCard";
 import "./Wishlist.css";
 import { CartContext } from "../Context/CartContext";
 
-export const Wishlist = () => {
+ const Wishlist = () => {
   const { wishlist } = useContext(CartContext);
   return (
       <div className="wishlist-container">
@@ -15,7 +15,7 @@ export const Wishlist = () => {
         ) : (
           <ul className="wishlist-product-listing">
             {wishlist.map((product) => (
-              <li>
+              <li key={product.id}>
                 <ProductCard product={product} />
               </li>
             ))}
@@ -23,4 +23,6 @@ export const Wishlist = () => {
         )}
     </div>
   );
-};
+ };
+
+ export default Wishlist;
