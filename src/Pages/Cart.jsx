@@ -6,10 +6,10 @@ import "./Cart.css";
 import { PriceCard } from "../components/price-component/PriceCard";
 import { useContext } from "react";
 import { CartContext } from "../Context/CartContext";
+import { v4 as uuid } from "uuid";
 
 const Cart = () => {
   const { cart } = useContext(CartContext);
-
   return (
     <div className="cartPage">
       <div className="wrapContent">
@@ -36,7 +36,7 @@ const Cart = () => {
           <div className="product-card-landscape-list">
             <ul>
                   {cart.map((product) => (
-                <li className="product-card-landscape-list-listing" key={product.id}>
+                <li className="product-card-landscape-list-listing" key={uuid()}>
                   <ProductCardLandscape product={product} />
                 </li>
               ))}

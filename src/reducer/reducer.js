@@ -4,8 +4,8 @@ export const userReducer = (prevState, { type, payload }) => {
       return {
         ...prevState,
         isLoggedIn: true,
-        user: payload.foundUser,
-        token: payload.encodedToken,
+        user: payload.user,
+        token: payload.token,
         orderHistory: [],
       };
     case "SIGNUP_SUCCESS":
@@ -32,8 +32,14 @@ export const userReducer = (prevState, { type, payload }) => {
         ...prevState,
         address: prevState.address.filter(({ id }) => id !== payload),
       };
+    
+        case "GET_ORDER":
+      return {
+        ...prevState,
+        orderHistory:  [...prevState.orderHistory, payload],
+      };
+    
     case "ADD_ORDER":
-      console.log(payload);
       return {
         ...prevState,
         orderHistory: [...prevState.orderHistory, payload],

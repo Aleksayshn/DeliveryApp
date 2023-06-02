@@ -4,6 +4,7 @@ import { CartContext } from "../../Context/CartContext";
 import { useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/AuthContext";
+import { v4 as uuid } from "uuid";
 
 export const PriceCard = () => {
   const {
@@ -95,7 +96,7 @@ export const PriceCard = () => {
           ) : (
             <ul className="price-detail-list">
               {cart.map(({ title, price, qty, id }) => (
-                <li key={id}>
+                <li key={uuid()}>
                   <span>
                     {title}(x{qty})
                   </span>

@@ -24,7 +24,7 @@ export const AddressCard = ({ hideAddressHandler }) => {
                     checked={active}
                     onChange={() => selectAddressHandler(id)}
                   />
-                  <label for={id}>
+                  <label htmlFor={id}>
                     <h3>{name}</h3>
                     <p>{user_address}</p>
                     <span>Pincode:{pincode}</span>

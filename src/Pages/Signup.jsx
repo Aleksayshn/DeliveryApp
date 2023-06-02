@@ -44,27 +44,29 @@ import { AuthContext } from "../Context/AuthContext";
         className="signup-container"
       >
         <h2 className="signup-heading">Sign Up</h2>
-        <label for="firstname" className="signup-label">
+        <label htmlFor="firstname" className="signup-label">
           First Name
         </label>
         <input
-          id="firstname"
+          id="firstName"
           className="signup-input"
           type="text"
-          placeholder="John"
+          placeholder="Alex"
           required={true}
+          name="firstname"
         />
-        <label for="lastname" className="signup-label">
+        <label htmlFor="lastname" className="signup-label">
           Last Name
         </label>
         <input
           id="lastname"
           className="signup-input"
           type="text"
-          placeholder="Walter"
+          placeholder="Developer"
           required={true}
+          name="lastname"
         />
-        <label for="email" className="signup-label">
+        <label htmlFor="email" className="signup-label">
           Email Address
         </label>
         <input
@@ -74,31 +76,32 @@ import { AuthContext } from "../Context/AuthContext";
           placeholder="example@gmail.com"
           pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
           required={true}
+          name="email"
         />
-        <label for="password" className="signup-label">
+        <label htmlFor="password" className="signup-label">
           Password
         </label>
         <input
           id="password"
           className="signup-input"
           type="password"
-          placeholder="********"
-          pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
+          placeholder="*****"
           required={true}
+          name="password"
           onChange={(e) => disablehandler(e)}
         />
         <p className="match-password">{msg}</p>
-        <label for="password" className="signup-label">
+        <label htmlFor="confirmPassword" className="signup-label">
           Confirm Password
         </label>
         <input
           id="confirm-password"
           className="signup-input"
           type="password"
-          placeholder="********"
-          pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
+          placeholder="*****"
           onChange={(e) => confirmPasswordHandler(e)}
           required={true}
+          name="confirmPassword"
           disabled={disabled}
         />
         <button type="submit" className="signup-button" disabled={msg !== ""}>

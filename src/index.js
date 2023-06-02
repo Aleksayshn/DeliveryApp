@@ -6,11 +6,8 @@ import "./index.css";
 import App from "./App";
 import { ProductProvider } from "./Context/ProductContext";
 import { AuthProvider } from "./Context/AuthContext";
-import { makeServer } from "./services/server";
 import { CartProvider } from "./Context/CartContext";
 
-// Call make Server
-makeServer();
 
 createRoot(document.getElementById("root"))
   .render(

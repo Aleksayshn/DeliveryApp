@@ -15,8 +15,8 @@ const Checkout = lazy(() => import('./Pages/Checkout'));
 const Cart = lazy(() => import('./Pages/Cart'));
 const Wishlist = lazy(() => import('./Pages/Wishlist'));
 const UserProfile = lazy(() => import('./Pages/UserProfile'));
+const OrderHistory = lazy(() => import('./Pages/OrderHistory'));
 const NotFound = lazy(() => import('./Pages/NotFound'));
-const MockAPI = lazy(() => import('./Pages/MockAPI'));
 
 function App() {
 
@@ -60,7 +60,14 @@ function App() {
             </RequireAuth>
           }
           />
-          <Route path="/mockman" element={<MockAPI />} />
+          <Route
+          path="/orders"
+          element={
+            <RequireAuth>
+              <OrderHistory />
+            </RequireAuth>
+          }
+        />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

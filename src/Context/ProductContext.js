@@ -9,10 +9,10 @@ export const ProductProvider = ({ children }) => {
   });
   const getProductData = async () => {
     try {
-      const categoryData = await (await fetch("/api/categories")).json();
-      const productData = await (await fetch("/api/products")).json();
-      dispatch({ type: "SET_CATEGORY", payload: categoryData.categories });
-      dispatch({ type: "SET_PRODUCT", payload: productData.products });
+      const categoryData = await (await fetch("https://your-delivery-by-sayshn.onrender.com/api/categories")).json();
+      const productData = await (await fetch("https://your-delivery-by-sayshn.onrender.com/api/products")).json();
+      dispatch({ type: "SET_CATEGORY", payload: categoryData });
+      dispatch({ type: "SET_PRODUCT", payload: productData });
     } catch (e) {
       console.error(e);
     }

@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
   const setLoginSuccess = (data) => {
     dispatch({ type: "LOGIN_SUCCESS", payload: data });
   };
-
+  
   const authenticateUser = async (event, email, password) => {
     event.preventDefault();
     try {
@@ -36,20 +36,23 @@ export const AuthProvider = ({ children }) => {
         email: email,
         password: password,
       };
-      const response = await fetch("/api/auth/login", {
+      
+      const response = await fetch("https://your-delivery-by-sayshn.onrender.com/api/auth/login", {
         method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
       if (response.status === 200) {
         const responseData = await response.json();
+        const { data } = responseData;
         resetCartContext();
-        setLoginSuccess(responseData);
-        localStorage.setItem("token", responseData.encodedToken);
+        setLoginSuccess(data);
+        localStorage.setItem("token", data.token);
         toast.success(
           `Welcome ${
-            responseData.foundUser.firstName +
+            data.user.firstName +
             " " +
-            responseData.foundUser.lastName
+            data.user.lastName
           }`,
           {
             position: "top-center",
@@ -93,25 +96,26 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const signUpHandler = async (event, firstname, lastname, email, password) => {
+  const signUpHandler = async (event, firstName, lastName, email, password) => {
     event.preventDefault();
     try {
       const data = {
         email: email,
         password: password,
-        firstName: firstname,
-        lastName: lastname,
+        firstName: firstName,
+        lastName: lastName,
       };
-      const response = await fetch("/api/auth/signup", {
+      
+      const response = await fetch("https://your-delivery-by-sayshn.onrender.com/api/auth/signup", {
         method: "POST",
+        headers: {"Content-Type": "application/json"},
         body: JSON.stringify(data),
       });
-      console.log(response.status);
       if (response.status === 201) {
-        const responseData = await response.json();
+        // const {data} = await response.json();
         resetCartContext();
-        localStorage.setItem("token", responseData.encodedToken);
         navigate("/login");
+
         toast.success("User created. Please login to continue", {
           position: "top-center",
           autoClose: 1500,
@@ -175,13 +179,35 @@ export const AuthProvider = ({ children }) => {
     dispatch({ type: "REMOVE_ADDRESS", payload: addId });
   };
 
-  const orderHistoryHandler = (
+  const orderHistoryHandler = async (
     payment_id,
     amount,
     date,
     address,
     orderItems
   ) => {
+    try {
+      const token = localStorage.getItem("token");
+      const auth = {'Authorization': `Bearer ${token}`};
+      const requestBody = JSON.stringify({
+        order: {
+          paymentId: payment_id,
+          totalAmount: amount,
+          orderDate: date,
+          deliveryAddress: address,
+          cart: orderItems,
+        }
+      });
+      const response = await fetch("https://your-delivery-by-sayshn.onrender.com/api/user/order", {
+        method: "PATCH",
+      headers: { 
+        ...auth,
+        "Content-Type": "application/json",
+      },
+        body: requestBody,
+      });
+
+      if (response.status === 200) {
     dispatch({
       type: "ADD_ORDER",
       payload: {
@@ -192,9 +218,12 @@ export const AuthProvider = ({ children }) => {
         cart: orderItems,
       },
     });
+          }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
-  console.log(userData.orderHistory);
   return (
     <AuthContext.Provider
       value={{
