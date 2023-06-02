@@ -1,5 +1,10 @@
 
-# DeliveryApp
+# DeliveryApp (...currently undergoing improvements and requires code refactoring:
+- Improve modularization and component structure
+- Enhance naming conventions and code readability
+- Optimize performance and efficiency
+- Apply best practices and design patterns
+
 ## Backend Part: https://github.com/Aleksayshn/rest-api-delivery
 **How to install and run locally ?**
 ```
