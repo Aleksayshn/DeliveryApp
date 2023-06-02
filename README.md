@@ -1,6 +1,6 @@
 
 # DeliveryApp 
-## **...currently requires code refactoring -**
+ **...currently requires code refactoring**
 - Improve modularization and component structure
 - Enhance naming conventions and code readability
 - Optimize performance and efficiency
