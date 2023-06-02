@@ -4,7 +4,7 @@ import { ProductContext } from "../Context/ProductContext";
 import { useNavigate } from "react-router";
 import Backdrop from "@mui/material/Backdrop";
 import { CartContext } from "../Context/CartContext";
-import { TailSpin } from "react-loader-spinner";
+import CircularProgress from "@mui/material/CircularProgress";
 
  const Home = () => {
   const { categories } = useContext(ProductContext);
@@ -22,17 +22,8 @@ import { TailSpin } from "react-loader-spinner";
       sx={{ color: "#cdc1c1", zIndex: (theme) => theme.zIndex.drawer + 1 }}
       open={true}
       // onClick={handleClose}
-    >
-      <TailSpin
-        height="80"
-        width="100%"
-        color="#a6d9a5"
-        ariaLabel="tail-spin-loading"
-        radius="1"
-        wrapperStyle={{ margin: "8rem auto" }}
-        wrapperClass=""
-        visible={true}
-      />
+      >
+        <CircularProgress color="primary" size={150} />
     </Backdrop>
     )
     : (

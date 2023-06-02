@@ -22,28 +22,28 @@ const Checkout = () => {
           className="add-address-form"
         >
           <h3>ADD NEW ADDRESS</h3>
-          <label for="addressname">Name</label>
+          <label htmlFor="addressname">Name</label>
           <input
             id="addressname"
             type="text"
             placeholder="John walter"
             required={true}
           />
-          <label for="pincode">Pin Code</label>
+          <label htmlFor="pincode">Pin Code</label>
           <input
             id="pincode"
             type="number"
             required={true}
             placeholder="123456"
           />
-          <label for="mobileno">mobile</label>
+          <label htmlFor="mobileno">mobile</label>
           <input
             id="mobileno"
             type="number"
             required={true}
             placeholder="1234567890"
           />
-          <label for="address">address</label>
+          <label htmlFor="address">address</label>
           <textarea
             col={5}
             id="address"

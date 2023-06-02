@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { ProductCard } from "../components/product-component/ProductCard";
 import "./Wishlist.css";
 import { CartContext } from "../Context/CartContext";
+import { v4 as uuid } from "uuid";
 
  const Wishlist = () => {
   const { wishlist } = useContext(CartContext);
@@ -15,7 +16,7 @@ import { CartContext } from "../Context/CartContext";
         ) : (
           <ul className="wishlist-product-listing">
             {wishlist.map((product) => (
-              <li key={product.id}>
+              <li key={uuid()}>
                 <ProductCard product={product} />
               </li>
             ))}

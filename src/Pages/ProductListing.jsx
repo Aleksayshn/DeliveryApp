@@ -5,9 +5,9 @@ import { ProductCard } from "../components/product-component/ProductCard";
 import { AiFillFilter } from "react-icons/ai";
 import { ProductContext } from "../Context/ProductContext";
 import { CartContext } from "../Context/CartContext";
-import { TailSpin } from "react-loader-spinner";
 import Drawer from "@mui/material/Drawer";
 import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 
  const ProductListing = () => {
   const { products } = useContext(ProductContext);
@@ -75,16 +75,7 @@ import Backdrop from "@mui/material/Backdrop";
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
           open={true}
         >
-          <TailSpin
-            height="80"
-            width="100%"
-            color="#4fa94d"
-            ariaLabel="tail-spin-loading"
-            radius="1"
-            wrapperStyle={{ margin: "8rem auto" }}
-            wrapperClass=""
-            visible={true}
-          />
+            <CircularProgress color="primary" size={150} />
         </Backdrop>
       ) : (
         <section className="listing">
