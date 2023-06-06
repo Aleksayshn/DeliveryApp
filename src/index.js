@@ -4,9 +4,9 @@ import { BrowserRouter} from "react-router-dom";
 
 import "./index.css";
 import App from "./App";
-import { ProductProvider } from "./Context/ProductContext";
-import { AuthProvider } from "./Context/AuthContext";
-import { CartProvider } from "./Context/CartContext";
+import { ProductProvider } from "./context/ProductContext";
+import { AuthProvider } from "./context/AuthContext";
+import { CartProvider } from "./context/CartContext";
 
 
 createRoot(document.getElementById("root"))

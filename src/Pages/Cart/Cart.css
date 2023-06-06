@@ -1,0 +1,80 @@
+.cart-detail {
+  display: flex;
+  gap: 1rem;
+}
+.empty-cart {
+  font-size: 1.5rem;
+  margin-top: 5rem;
+  text-align: center;
+}
+.cart-heading {
+  text-align: center;
+  color: rgb(35, 35, 17);
+  border: 2px solid rgba(122, 21, 21, 0.989);
+  background-color: antiquewhite;
+  padding: 5px 15px;
+  border-radius: 5px;
+}
+
+.stepper {
+  margin: 1rem auto;
+}
+.product-card-landscape-list ul {
+display: flex;
+flex-direction: column;
+gap: 1rem;
+}
+
+.product-card-landscape-list li {
+  width: auto;
+  display: flex;
+  border-radius: 5px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
+  background-color: rgb(243, 243, 222);
+}
+.price-card {
+  width: 100%;
+  padding: 0.9rem;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.5);
+    background-color: rgb(243, 243, 222);
+}
+@media screen and (max-width: 786px) {
+  .cart-detail {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .price-card {
+    min-width: 80%;
+  }
+  .product-card-landscape-list {
+    min-width: 80%;
+  }
+  .product-card-landscape-list-listing {
+    margin-bottom: 2rem;
+  }
+}
+
+.cartPage {
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(174, 177, 211, 0.4), rgba(13, 13, 22, 0.4)), url(../../assets/images/3588601.jpg);
+  background-color: rgba(215, 241, 208, 0.8);
+  background-blend-mode: multiply;
+  background-size:cover;
+  background-position: center;
+  padding-top: 5rem;
+  padding-left: 2rem;
+    padding-right: 2rem;
+}
+.wrapContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
