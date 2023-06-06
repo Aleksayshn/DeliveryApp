@@ -3,6 +3,7 @@ import { CartContext } from "./CartContext";
 import { userReducer } from "../reducer/reducer";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
+import instance from "constants/apiDefault";
 
 export const AuthContext = createContext();
 
@@ -28,31 +29,25 @@ export const AuthProvider = ({ children }) => {
   const setLoginSuccess = (data) => {
     dispatch({ type: "LOGIN_SUCCESS", payload: data });
   };
-  
+
   const authenticateUser = async (event, email, password) => {
     event.preventDefault();
     try {
-      const data = {
+      const body = {
         email: email,
         password: password,
       };
-      
-      const response = await fetch("https://your-delivery-by-sayshn.onrender.com/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (response.status === 200) {
-        const responseData = await response.json();
-        const { data } = responseData;
+      const {data, status} = await instance.post("/auth/login", body, {"Content-Type": "application/json"});
+      const { token, user } = data.data;
+      if (status === 200) {
         resetCartContext();
-        setLoginSuccess(data);
-        localStorage.setItem("token", data.token);
+        setLoginSuccess(data.data);
+        localStorage.setItem("token", token);
         toast.success(
           `Welcome ${
-            data.user.firstName +
+            user.firstName +
             " " +
-            data.user.lastName
+            user.lastName
           }`,
           {
             position: "top-center",
@@ -65,8 +60,7 @@ export const AuthProvider = ({ children }) => {
           }
         );
       }
-      if (response.status === 404) {
-        //token not found
+      if (status === 401) {
         toast.error("Wrong credentials.\nInvalid email or password provided", {
           position: "top-center",
           autoClose: 1500,
@@ -77,7 +71,7 @@ export const AuthProvider = ({ children }) => {
           theme: "colored",
         });
       }
-      if (response.status === 422) {
+      if (status === 422) {
         toast.error(
           "A user account alrady exists with the provided email address",
           {
@@ -92,6 +86,15 @@ export const AuthProvider = ({ children }) => {
         );
       }
     } catch (err) {
+        toast.error("Wrong credentials.\nInvalid email or password provided", {
+          position: "top-center",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       console.error(err);
     }
   };
@@ -99,20 +102,16 @@ export const AuthProvider = ({ children }) => {
   const signUpHandler = async (event, firstName, lastName, email, password) => {
     event.preventDefault();
     try {
-      const data = {
+      const body = {
         email: email,
         password: password,
         firstName: firstName,
         lastName: lastName,
       };
-      
-      const response = await fetch("https://your-delivery-by-sayshn.onrender.com/api/auth/signup", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(data),
-      });
-      if (response.status === 201) {
-        // const {data} = await response.json();
+
+      const {status} = await instance.post("/auth/signup", body, {"Content-Type": "application/json"});
+
+      if (status === 201) {
         resetCartContext();
         navigate("/login");
 
@@ -126,7 +125,7 @@ export const AuthProvider = ({ children }) => {
           progress: undefined,
           theme: "colored",
         });
-      } else if (response.status === 422) {
+      } else if (status === 422) {
         toast.error(
           "A user account alrady exists with the provided email address",
           {
@@ -179,51 +178,49 @@ export const AuthProvider = ({ children }) => {
     dispatch({ type: "REMOVE_ADDRESS", payload: addId });
   };
 
-  const orderHistoryHandler = async (
-    payment_id,
-    amount,
-    date,
-    address,
-    orderItems
-  ) => {
-    try {
-      const token = localStorage.getItem("token");
-      const auth = {'Authorization': `Bearer ${token}`};
-      const requestBody = JSON.stringify({
-        order: {
-          paymentId: payment_id,
-          totalAmount: amount,
-          orderDate: date,
-          deliveryAddress: address,
-          cart: orderItems,
-        }
-      });
-      const response = await fetch("https://your-delivery-by-sayshn.onrender.com/api/user/order", {
-        method: "PATCH",
-      headers: { 
-        ...auth,
-        "Content-Type": "application/json",
-      },
-        body: requestBody,
-      });
-
-      if (response.status === 200) {
-    dispatch({
-      type: "ADD_ORDER",
-      payload: {
+const orderHistoryHandler = async (
+  payment_id,
+  amount,
+  date,
+  address,
+  orderItems
+) => {
+  try {
+    const token = localStorage.getItem("token");
+    const auth = { 'Authorization': `Bearer ${token}` };
+    const requestBody = {
+      order: {
         paymentId: payment_id,
         totalAmount: amount,
         orderDate: date,
         deliveryAddress: address,
         cart: orderItems,
+      }
+    };
+
+    const response = await instance.patch("/user/order", requestBody, {
+      headers: {
+        ...auth,
+        "Content-Type": "application/json",
       },
     });
-          }
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
+    if (response.status === 200) {
+      dispatch({
+        type: "ADD_ORDER",
+        payload: {
+          paymentId: payment_id,
+          totalAmount: amount,
+          orderDate: date,
+          deliveryAddress: address,
+          cart: orderItems,
+        },
+      });
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
   return (
     <AuthContext.Provider
       value={{

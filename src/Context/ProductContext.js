@@ -1,5 +1,6 @@
 import { createContext, useEffect, useReducer } from "react";
 import { productReducer } from "../reducer/reducer";
+import instance from "constants/apiDefault";
 
 export const ProductContext = createContext();
 export const ProductProvider = ({ children }) => {
@@ -9,10 +10,10 @@ export const ProductProvider = ({ children }) => {
   });
   const getProductData = async () => {
     try {
-      const categoryData = await (await fetch("https://your-delivery-by-sayshn.onrender.com/api/categories")).json();
-      const productData = await (await fetch("https://your-delivery-by-sayshn.onrender.com/api/products")).json();
-      dispatch({ type: "SET_CATEGORY", payload: categoryData });
-      dispatch({ type: "SET_PRODUCT", payload: productData });
+      const categoryData = await instance.get("/categories");
+      const productData = await instance.get("/products");
+      dispatch({ type: "SET_CATEGORY", payload: categoryData.data });
+      dispatch({ type: "SET_PRODUCT", payload: productData.data });
     } catch (e) {
       console.error(e);
     }
