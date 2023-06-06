@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import error from "../animation/404.json";
+import error from "../assets/animation/404.json";
  const NotFound = () => {
   return (
     <>

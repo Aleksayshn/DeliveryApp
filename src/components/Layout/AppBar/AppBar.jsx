@@ -3,8 +3,8 @@ import { AiOutlineShoppingCart, AiFillHeart } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import "./AppBar.css";
 import { useContext, useRef } from "react";
-import { CartContext } from "../../../Context/CartContext";
-import { AuthContext } from "../../../Context/AuthContext";
+import { CartContext } from "../../../context/CartContext";
+import { AuthContext } from "../../../context/AuthContext";
 
 const AppBar = () => {
   const timerId = useRef();
