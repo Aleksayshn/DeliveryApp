@@ -11,9 +11,6 @@ $ git clone https://github.com/Aleksayshn/rest-api-delivery.git
 $ npm install
 ```
 - Copy the contents of the .env.example file into the created .env file.
-- Set the following values:
--   DB_HOST=mongodb+srv://testUser:xEQNarB56Um8yLE2@cluster0.rowid4b.mongodb.net/db-contacts
--   JWT_SECRET=GHGSDFM23Tfgsfs3
 ```
 $ npm start
 $ Run this and browse to Port: 8080
